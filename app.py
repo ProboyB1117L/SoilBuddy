@@ -1,26 +1,38 @@
-from flask import Flask, render_template, request
-from utils.soilscan_logic import analyze_soil
-import os
-from werkzeug.utils import secure_filename
+from flask import Flask, render_template, request, redirect, flash
+from utils.krishi_logic import generate_plan
 
 app = Flask(__name__)
+app.secret_key = 'some_secret_key'
 
-# Ensure upload folder exists
-UPLOAD_FOLDER = os.path.join('static', 'uploads')
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# ----------------- Routes -----------------
-
-# Home Page
 @app.route('/')
 def home():
     return render_template('HomePage.html')
 
-# Krishi Udaan (example)
 @app.route('/krishiudaan')
 def krishiudaan():
     return render_template('KrishiUdaanF.html')
+
+@app.route('/krishiudaan/result', methods=['POST'])
+def krishiudaan_result():
+    try:
+        land_size = request.form['land_size']
+        climate = request.form['climate']
+        capital = request.form['capital']
+        water = request.form['water']
+        labourers = request.form['labour']
+        region = request.form['region']
+        num_crops = request.form['num_crops']
+
+        plan = generate_plan(land_size, climate, capital, water, labourers, region, num_crops)
+        return render_template('KrishiUdaanResult.html', plan=plan)
+
+    except ValueError as ve:
+        flash(str(ve))
+        return redirect('/krishiudaan')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 
 # SoilScan input page
 @app.route('/soilscan')
