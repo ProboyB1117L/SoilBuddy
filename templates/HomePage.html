@@ -19,14 +19,16 @@
 <body class="light transition-all">
 
 <!-- Navbar -->
-<nav class="navbar text-white shadow-lg">
-  <div class="container mx-auto flex flex-wrap p-5 flex-row items-center justify-between">
-    <div class="flex items-center space-x-10">
+<nav class="navbar fixed top-0 w-full bg-white/30 backdrop-blur-md text-white shadow-md">
+  <div class="container mx-auto flex items-center justify-between px-5 py-2">
+    
+    <div class="flex items-center space-x-8">
       <a href="/" class="flex items-center">
-        <img src="/templates/SoilBuddy Logo.png" alt="SoilBuddy Logo" class="h-10 w-auto">
-        <span class="text-2xl font-semibold ml-2">SoilBuddy</span>
+        <img src="/templates/SoilBuddy Logo.png" alt="SoilBuddy Logo" class="h-8 w-auto">
+        <span class="text-xl font-semibold ml-2">SoilBuddy</span>
       </a>
-      <div class="flex space-x-6 text-sm md:text-base">
+
+      <div class="flex space-x-5 text-sm md:text-base">
         <a href="/krishiudaan" class="hover:text-green-300 transition">KrishiUdaan</a>
         <a href="/amritjeevan" class="hover:text-green-300 transition">AmritJeevan</a>
         <a href="https://bharatbot-2a7793.zapier.app" target="_blank" class="hover:text-green-300 transition">BharatBot</a>
@@ -36,13 +38,14 @@
       </div>
     </div>
 
-   <nav class="flex items-center space-x-4">
-  <!-- Other navbar elements -->
-  {% include 'base.html' %}
-  <button id="theme-toggle" class="p-2 rounded-lg bg-green-700 hover:bg-green-800 text-white">
-    Dark / Light
-  </button>
+    <div class="flex items-center space-x-4">
+      {% include 'base.html' %}
+    </div>
+
+  </div>
 </nav>
+
+<div class="pt-16"></div>
 
   </div>
 </nav>
